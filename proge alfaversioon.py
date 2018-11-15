@@ -33,7 +33,7 @@ link = linkide_kogu[-1] #saame viimase nädalaartikli lingi
 #    link = "https://et.wikipedia.org/"+ kogu_sisu[1]
 #    print(link)
 #else:
-#    print("shallalalalla siin on probleem")
+#    print("shallalalalla")
     
     
 #2 viis: käib läbi kõik read ning kui selline rida eksisteerib, siis salvestab sealt soovitud väärtuse
@@ -67,11 +67,11 @@ link = linkide_kogu[-1] #saame viimase nädalaartikli lingi
 #print(aadress.text) #teisendada tekstiks
 
 
-#koodijupp saadud lehelt: http://naelshiab.com/tutorial-send-email-python/
+#saadab meili
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
 server.login("hexagonal300@gmail.com", "pallimeri")
  
-msg = "Viimase nädala artikli link: ", str(link)
+msg = str(link)
 server.sendmail("hexagonal300@gmail.com", "trolololobro@gmail.com", msg)
 server.quit()
