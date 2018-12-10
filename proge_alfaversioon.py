@@ -4,7 +4,7 @@ from lxml import html
 from lxml import etree
 
 page = requests.get('https://et.wikipedia.org/wiki/Vikipeedia:N%C3%A4dala_artiklid_2018')#lehekülg millelt tõmbab html-i alla
-tree = html.fromstring(page.content)
+tree = html.fromstring(page.content)   
 
 linkide_kogu = []    
 loe_edasi = tree.xpath('//*[@id="mw-content-text"]/div/p[6]/b/a/text()')
@@ -27,18 +27,16 @@ for i in range(190):
             kogu_sisu = (etree.tostring(a, method='html', with_tail=False))
 
         kogu_sisu = str(kogu_sisu.split()[1]).split('"')
-        linkide_kogu.append("https://et.wikipedia.org/"+ kogu_sisu[1])#paneb täispika leheküljenime kokku
+        linkide_kogu.append("et.wikipedia.org/"+ kogu_sisu[1])#paneb täispika leheküljenime kokku
         
     else:
         continue
 
 link = linkide_kogu[-1] #saame viimase nädalaartikli lingi
-
 #saadab meili
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
 server.login("hexagonal300@gmail.com", "pallimeri")
  
-msg = str(link)
-server.sendmail("hexagonal300@gmail.com", "trolololobro@gmail.com", msg)
+server.sendmail("hexagonal300@gmail.com", "trolololobro@gmail.com", link)
 server.quit()
