@@ -7,7 +7,7 @@ import requests
 from lxml import html
 from lxml import etree
 
-#parool = input("Sisesta parool: ")
+parool = input("Sisesta parool: ")
 
 page = requests.get('https://et.wikipedia.org/wiki/Vikipeedia:N%C3%A4dala_artiklid_2018')#lehekülg millelt tõmbab html-i alla
 tree = html.fromstring(page.content)
@@ -35,7 +35,6 @@ link = linkide_kogu[-1] #saame viimase nädalaartikli lingi
 #link = link.replace('ö','o')
 #link = link.replace('ü','u')
 #link = link.replace(':','KOOLON(kustuta see ning asenda ise kooloniga)')
-parool = "StellaRiin2018"
 
 #link = "Saadan wikipeedia viimase n2dalaartikli lingi" + link
 #saadab meili
