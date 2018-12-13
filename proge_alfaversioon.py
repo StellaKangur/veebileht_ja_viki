@@ -1,7 +1,13 @@
+#Kui saadetud meilis esineb täpitähti, siis meili saatmise võimaldamiseks eemaldatakse neist täpid. Kui meilile tulnud link ei tööta, tasub esimese asjana
+#üle kontrollida, kas mõne tähe asemel (lingis) ei peaks olema pigem täpitäht. Samuti asendatakse lingis esinevad koolonid sõnaga 'koolon', et oleks võimalik
+#meil saata. 
+
 import smtplib
 import requests
 from lxml import html
 from lxml import etree
+
+#parool = input("Sisesta parool: ")
 
 page = requests.get('https://et.wikipedia.org/wiki/Vikipeedia:N%C3%A4dala_artiklid_2018')#lehekülg millelt tõmbab html-i alla
 tree = html.fromstring(page.content)
@@ -24,11 +30,18 @@ for i in range(240):#hakkab ükshaaval html-i ridu läbima
         continue
 
 link = linkide_kogu[-1] #saame viimase nädalaartikli lingi
-#link = "Saadan wikipeedia viimase nädalaartikli lingi: \n" + link
+#link = link.replace('ä','a')
+#link = link.replace('õ','o')
+#link = link.replace('ö','o')
+#link = link.replace('ü','u')
+#link = link.replace(':','KOOLON(kustuta see ning asenda ise kooloniga)')
+parool = "StellaRiin2018"
+
+#link = "Saadan wikipeedia viimase n2dalaartikli lingi" + link
 #saadab meili
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
-server.login("hexagonal300@gmail.com", "pallimeri")
+server.login("projektijaoks@gmail.com", parool)
  
-server.sendmail("hexagonal300@gmail.com", "trolololobro@gmail.com", link)
+server.sendmail("projektijaoks@gmail.com", "trolololobro@gmail.com", link)
 server.quit()
